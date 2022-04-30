@@ -20,7 +20,7 @@ $(function() {
   var indexAdd = null
   $('#btnAddCate').on('click', function() {
     indexAdd = layer.open({
-      type: 1,
+      type: 1,//1页面，可以写代码；0是普通
       area: ['500px', '250px'],
       title: '添加文章分类',
       content: $('#dialog-add').html()
@@ -63,7 +63,7 @@ $(function() {
       method: 'GET',
       url: '/my/article/cates/' + id,
       success: function(res) {
-        form.val('form-edit', res.data)
+        form.val('form-edit', res.data)//form-edi是layui的类，表单填充
       }
     })
   })

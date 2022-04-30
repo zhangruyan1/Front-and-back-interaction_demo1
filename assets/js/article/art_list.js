@@ -87,7 +87,7 @@ $(function() {
 
   // 定义渲染分页的方法
   function renderPage(total) {
-    // 调用 laypage.render() 方法来渲染分页的结构
+    // 调用 laypage.render() 方法来渲染分页的结构，内置模块的分页
     laypage.render({
       elem: 'pageBox', // 分页容器的 Id
       count: total, // 总数据条数
@@ -98,13 +98,13 @@ $(function() {
       // 分页发生切换的时候，触发 jump 回调
       // 触发 jump 回调的方式有两种：
       // 1. 点击页码的时候，会触发 jump 回调
-      // 2. 只要调用了 laypage.render() 方法，就会触发 jump 回调
+      // 2. 只要调用了 laypage.render() 方法，就会触发 jump 回调,不用first就会有死循环
       jump: function(obj, first) {
         // 可以通过 first 的值，来判断是通过哪种方式，触发的 jump 回调
         // 如果 first 的值为 true，证明是方式2触发的
         // 否则就是方式1触发的
-        console.log(first)
-        console.log(obj.curr)
+        // console.log(first)
+        // console.log(obj.curr)
         // 把最新的页码值，赋值到 q 这个查询参数对象中
         q.pagenum = obj.curr
         // 把最新的条目数，赋值到 q 这个查询参数对象的 pagesize 属性中
@@ -126,7 +126,7 @@ $(function() {
     // 获取到文章的 id
     var id = $(this).attr('data-id')
     // 询问用户是否要删除数据
-    layer.confirm('确认删除?', { icon: 3, title: '提示' }, function(index) {
+    layer.confirm('是否确认删除?', { icon: 3, title: '提示' }, function(index) {
       $.ajax({
         method: 'GET',
         url: '/my/article/delete/' + id,

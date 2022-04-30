@@ -18,7 +18,7 @@ $(function() {
         // 调用模板引擎，渲染分类的下拉菜单
         var htmlStr = template('tpl-cate', res)
         $('[name=cate_id]').html(htmlStr)
-        // 一定要记得调用 form.render() 方法
+        // 用 form.render() 方法
         form.render()
       }
     })
@@ -52,8 +52,7 @@ $(function() {
     // 根据文件，创建对应的 URL 地址
     var newImgURL = URL.createObjectURL(files[0])
     // 为裁剪区域重新设置图片
-    $image
-      .cropper('destroy') // 销毁旧的裁剪区域
+    $image.cropper('destroy') // 销毁旧的裁剪区域
       .attr('src', newImgURL) // 重新设置图片路径
       .cropper(options) // 重新初始化裁剪区域
   })
